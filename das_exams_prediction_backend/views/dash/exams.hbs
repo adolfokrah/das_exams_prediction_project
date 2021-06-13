@@ -1,0 +1,69 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>All Exams</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Exam</li>
+                 <li class="breadcrumb-item active">All Exams</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12">
+               {{> alert}}
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                    <a href="/dash/app/post-question" class="btn btn-primary">
+                    Add Questions
+                    </a>
+                </div>
+              </div>
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Exam Type</th>
+                    <th>Year</th>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                    <th>Section</th>
+                    <th>Questions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each data.exams as |exams|}}
+                          <tr>
+                            <td>{{@index}}</td>
+                             <td>{{exams.type}}</td>
+                            <td>{{exams.year}}</td>
+                             <td>{{exams.subject_name}}</td>
+                             <td>{{exams.topic}}</td>
+                             <td>{{exams.section}}</td>
+                             <td><a href="/dash/app/view-questions?type={{exams.e_id}}&topic={{exams.t_id}}&year={{exams.year}}&section={{exams.section}}&exam_type={{exams.type}}&topic_name={{exams.topic}}&subject_name={{exams.subject_name}}">{{exams.questions}}</a></td>
+                            
+                        </tr>
+                      {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

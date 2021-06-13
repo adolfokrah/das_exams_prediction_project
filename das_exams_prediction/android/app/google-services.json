@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "606422597056",
+    "firebase_url": "https://dasexamsprediction.firebaseio.com",
+    "project_id": "dasexamsprediction",
+    "storage_bucket": "dasexamsprediction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606422597056:android:d7227be03cf9fc8976dc25",
+        "android_client_info": {
+          "package_name": "com.das_exams_prediction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606422597056-kea9spdoivu51k9aj38k457ji5ga0do5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.das_exams_prediction",
+            "certificate_hash": "9fd0eb73c4ee046cf8a42a2216e358355c168107"
+          }
+        },
+        {
+          "client_id": "606422597056-cdsv4choa00dd32tofkkbo566l4b8akt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx-0GQn6bm19UuIXsokIAhZ55nlHCV9Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606422597056-cdsv4choa00dd32tofkkbo566l4b8akt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

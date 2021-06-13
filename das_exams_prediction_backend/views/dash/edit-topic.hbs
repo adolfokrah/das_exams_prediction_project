@@ -1,0 +1,64 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Topics</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Miscellaneous</li>
+                <li class="breadcrumb-item ">Subjects</li>
+                <li class="breadcrumb-item ">{{data.subjects.[0].subject_name}}</li>
+                <li class="breadcrumb-item ">Edit Topic</li>
+                 <li class="breadcrumb-item active">{{data.subjects.[0].topic_name}}</li>
+                 
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12 col-lg-6">
+            <!-- general form elements -->
+             {{> alert}}
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit Topic</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+             
+              <form role="form" action="/dash/api/edit-topic" method="post">
+                <div class="card-body">
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Subject Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Subject" value="{{data.subjects.[0].subject_name}}" required name="subject_name" readonly>
+                  </div>
+                
+                   <input type="hidden" name="sub_id" value="{{data.subjects.[0].sub_id}}"/>
+                   <input type="hidden" name="topic_id" value="{{data.subjects.[0].t_id}}"/>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Topic Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Topic" value="{{data.subjects.[0].topic_name}}" required name="topic_name">
+                  </div>
+                  
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

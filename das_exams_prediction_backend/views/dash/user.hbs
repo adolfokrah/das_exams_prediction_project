@@ -1,0 +1,92 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>User</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item ">Users</li>
+                <li class="breadcrumb-item active">{{data.user.username}}</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12 col-lg-12 col-xl-6">
+            <!-- general form elements -->
+             {{> alert}}
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Submitted Assignment</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+             
+              <form role="form" action="/dash/api/update_user" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+                    <div>
+                         <img src="https://dasexamprediction.biztrustgh.com//uploads/images/{{data.user.photo}}" width="50px" height="50px" style="border-radius: 50px;"/>
+                    </div>
+                    <div>
+                       <strong>User Name:</strong>
+                       <span>{{data.user.username}}</span>
+                    </div>
+
+                    <div>
+                       <strong>Email:</strong>
+                       <span>{{data.user.email}}</span>
+                    </div>
+                    <div>
+                       <strong>Subscription:</strong>
+                       {{{data.user.premium}}}
+                    </div>
+                     <div>
+                       <strong>Exams:</strong>
+                       {{{data.user.typeOfExams}}}
+                    </div>
+                     <div>
+                       <strong>Region:</strong>
+                       {{{data.user.region}}}
+                    </div>
+                     <div>
+                       <strong>Phonenumber:</strong>
+                       {{{data.user.phonenumber}}}
+                    </div>
+                    <div>
+                       <strong>Joined:</strong>
+                       {{{data.user.joined_date}}}
+                    </div>
+                  
+
+                    
+
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Expiration</label>
+                        <input value="{{data.user.expiration}}" type="date" name="expiration" class="form-control">
+                    </div>
+
+                    <input type="hidden" name="user_id" value="{{data.user.user_id}}"/>
+                
+                </div>
+                <div class="card-footer">
+                   <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Update"/>
+                 </div>
+                </div>
+              </form>
+            </div>
+          </div>
+         </div>
+
+      </div>
+    </section>
+  </div>

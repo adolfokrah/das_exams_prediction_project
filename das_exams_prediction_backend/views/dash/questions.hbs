@@ -1,0 +1,76 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>All Questions</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Exam</li>
+                 <li class="breadcrumb-item">{{data.query.exam_type}}</li>
+                 <li class="breadcrumb-item">{{data.query.subject_name}}</li>
+                 <li class="breadcrumb-item">{{data.query.topic_name}}</li>
+                 <li class="breadcrumb-item">{{data.questions.[0].type}}</li>
+                 <li class="breadcrumb-item">{{data.query.year}}</li>
+                 <li class="breadcrumb-item active">Questions</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12">
+               {{> alert}}
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                    <a href="/dash/app/post-question" class="btn btn-primary">
+                    Add Questions
+                    </a>
+                </div>
+              </div>
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Video Link</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each data.questions as |question|}}
+                          <tr>
+                            <td>{{@index}}</td>
+                            <td>{{question.question}}</td>
+                            <td>{{question.a_text}}</td>
+                            <td>{{question.a_video}}</td>
+                            <td>
+                              <a href="/dash/app/exam/question/{{question.q_id}}/edit" class="btn btn-secondary">
+                                    <i class="far fa-edit"></i>
+                               </a>
+                               <a href="/dash/api/question/{{question.q_id}}/delete?url={{../data.url}}" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                               </a>
+                            </td>
+                        </tr>
+                      {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

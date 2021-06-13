@@ -1,0 +1,70 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Topics</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Miscellaneous</li>
+                 <li class="breadcrumb-item">Subjects</li>
+                 <li class="breadcrumb-item">{{data.subject.subject}}</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12">
+               {{> alert}}
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                    <a href="/dash/app/add-topics/{{data.subject.sub_id}}" class="btn btn-primary">
+                    Add Topic
+                    </a>
+                </div>
+              </div>
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Topic</th>
+                    <th>No. Questions</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each data.topics as |topic|}}
+                          <tr>
+                            <td>{{@index}}</td>
+                            <td>{{topic.topic_name}}</td>
+                            <td>{{topic.questions}}</td>
+                            <td>
+                               <a href="/dash/app/subject/topic/{{topic.t_id}}/edit" class="btn btn-secondary">
+                                    <i class="far fa-edit"></i>
+                               </a> 
+                               <a href="/dash/api/subject/topic/{{topic.t_id}}/delete" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                               </a>
+                            </td>
+                        </tr>
+                      {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

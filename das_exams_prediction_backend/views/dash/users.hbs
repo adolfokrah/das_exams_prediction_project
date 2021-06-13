@@ -1,0 +1,74 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Users</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Users</li>
+                 <li class="breadcrumb-item active">All Users</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12">
+               {{> alert}}
+            <div class="card">
+             
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Region</th>
+                    <th>Exams</th>
+                    <th>PhoneNumber</th>
+                    <th>premium</th>
+                    <th>Expiration</th>
+                    <th>Joined Date</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each data.users as |user|}}
+                          <tr>
+                            <td>
+                                <img src="https://dasexamprediction.biztrustgh.com/uploads/images/{{user.photo}}" width="50px" height="50px" style="border-radius: 50px;"/>
+                            </td>
+                             <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                             <td>{{user.region}}</td>
+                              <td>{{user.typeOfExams}}</td>
+                              <td>{{user.phonenumber}}</td>
+                             <td>{{{user.premium}}}</td>
+                             <td>{{user.expiration}}</td>
+                             <td>{{user.joined_date}}</td>
+                             <td>
+                                 <a href="/dash/app/users/{{user.user_id}}/view" class="btn btn-secondary">
+                                    <i class="far fa-eye"></i>
+                               </a>
+                             </td>
+                        </tr>
+                      {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

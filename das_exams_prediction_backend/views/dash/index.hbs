@@ -1,0 +1,146 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        
+          <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{data.allUsers}}</h3>
+
+                    <p>All Users</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                </div>
+            </div>
+
+            <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{data.premiumUsers}}</h3>
+
+                <p>Premium Users</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-check"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{data.normalUsers}}</h3>
+
+                <p>Normal Users</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-clock"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+
+            <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{data.submittedQuestions}}</h3>
+
+                <p>Submitted Questions</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-file"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          </div>
+
+          <div class="row">
+               <div class="col-12 col-lg-8">
+                   <div class="card">
+                       
+                       <div class="card-body">
+                            <div id="chart_div" style="width: 100%; height: 320px;"></div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-12 col-lg-4">
+                   <div class="card">
+                       <div class="card-body">
+                            <div id="piechart" style="width: 100%; height: 320px;"></div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-12 col-lg-8">
+                   <div class="card">
+                       <div class="card-body">
+                            <div id="columnchart_material" style="width: 100%; height: 500px;"></div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col col-lg-4">
+                   <div class="card">
+                       <div class="card-header">
+                         <h3 class="card-title">
+                           Mostly Viewed Subjects
+                        </h3>
+                       </div>
+                       <div class="card-body">
+                         <table class="table table-bordered">
+                        <thead>                  
+                          <tr>
+                            <th>Subject</th>
+                            <th>Exam Type</th>
+                            <th>Views</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each data.mostyViewedQuestions as |mostyViewedQuestions|}}
+                            <tr>
+                              <td>{{mostyViewedQuestions.subject}}</td>
+                              <td>{{mostyViewedQuestions.type}}</td>
+                              <td>{{mostyViewedQuestions.views}}</td>
+                            </tr>
+                          {{/each}}
+                        </tbody>
+                        </table>
+                       </div>
+                   </div>
+               </div>
+          </div>
+
+
+          </div>
+      </div>
+    </section>
+  </div>

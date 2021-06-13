@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Das Exams Prediction</string>
+    <string name="facebook_app_id">999293193830254</string>
+    <string name="fb_login_protocol_scheme">fb999293193830254</string>
+</resources>

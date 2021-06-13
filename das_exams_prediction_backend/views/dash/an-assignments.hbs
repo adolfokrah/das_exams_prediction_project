@@ -1,0 +1,63 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Assignments</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">Assignments</li>
+                 <li class="breadcrumb-item active">Answered Assignments</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12">
+               {{> alert}}
+            <div class="card">
+              
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Question</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each data.questions as |question|}}
+                          <tr>
+                            <td>#{{questions.sq_id}}</td>
+                            <td>{{question.question_text}}</td>
+                            <td>{{question.username}}</td>
+                            <td>{{question.email}}</td>
+                            <td>{{question.date}}</td>
+                            <td>
+                             <a href="/dash/app/s_question/{{question.sq_id}}/view" class="btn btn-secondary">
+                                    <i class="far fa-eye"></i>
+                               </a>
+                            </td>
+                        </tr>
+                      {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+  </div>

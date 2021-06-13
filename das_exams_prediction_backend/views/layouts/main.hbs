@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{title}}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- DataTables -->
+<link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+  <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  {{>navBar}}
+
+  {{>sideBar}}
+
+  {{{body}}}
+
+  {{>footer}}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/plugins/moment/moment.min.js"></script>
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/dist/js/demo.js"></script>
+<!-- DataTables -->
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script type="text/javascript">
+      if(location.pathname == '/dash/app'){
+        google.charts.load('current', {'packages':['corechart','bar']});
+        google.charts.setOnLoadCallback(drawChart);
+      }
+      
+
+      async function drawChart() {
+
+        var dashBoardStat = await axios.get('/dash/api/dashbaordstat');
+       
+        
+        var data = google.visualization.arrayToDataTable(dashBoardStat.data.userRegistration);
+
+        var year = new Date().getFullYear();
+        var options = {
+          isStacked: true,
+          colors: ['#278cb6', '#c4ccd5'],
+          chartArea: {
+              left: 40,
+              top: 50,
+              width: 900,
+              height: 250
+          },
+          legend: {position: 'top', maxLines: 3},
+          title: `User Registration ${dashBoardStat.data.userRegistration[1][0]}, ${year} -  ${dashBoardStat.data.userRegistration[dashBoardStat.data.userRegistration.length-1][0]}, ${year}`,
+          hAxis: { titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0,gridlines: {
+              color: 'transparent'
+          }},
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+        var data = google.visualization.arrayToDataTable(dashBoardStat.data.totalUsers);
+
+        var options = {
+          chartArea: {left:0, 'width': '100%', 'height': '80%'},
+          colors: ['#278cb6', '#c4ccd5'],
+          title: 'Total Users',
+          pieHole: 0.4,
+           legend: {position: 'top', maxLines: 3},
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+
+
+         var data = google.visualization.arrayToDataTable(dashBoardStat.data.submitted_questions);
+
+        var options = {
+          chart: {
+            title: `User Registration ${dashBoardStat.data.submitted_questions[1][0]}, ${year} -  ${dashBoardStat.data.submitted_questions[dashBoardStat.data.submitted_questions.length-1][0]}, ${year}`,
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      $(document).ready(function(){
+         var links = $('nav a');
+         for(var i=0; i<links.length; i++){
+           var linksHref = links[i].href;
+           var path = location.href;
+           if(linksHref == path){
+              var parents = $(links[i]).parents()
+              if($(parents[1]).hasClass('nav-treeview')){
+                 $(parents[2]).addClass('menu-open');
+                 $(parents[1]).css('display','block');
+              }
+              $(links[i]).addClass('active');
+           }
+         }
+
+          $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+          });
+          bsCustomFileInput.init();
+
+          $('#dropdownYear').each(function() {
+              var value = $(this).attr('data');
+              var year = new Date().getFullYear();
+               while(year > 2000){
+                 if(value == year){
+                  $(this).append('<option value="' + (year) + '" selected>' + (year) + '</option>');
+                 }else{
+                   $(this).append('<option value="' + (year) + '">' + (year) + '</option>');
+                 }
+                 year--;
+               }
+
+          })
+
+          $('#section').each(function(){
+             var value = $(this).attr('data');
+             if(value != ''){
+               $(this).val(value);
+             }
+          })
+
+          $('#examType').each(function(){
+             var value = $(this).attr('data');
+             if(value != ''){
+               $(this).val(value);
+             }
+          })
+
+          $('#subjectsDrop').each(function(){
+             var value = $(this).attr('data');
+             if(value != ''){
+               $(this).val(value);
+             }
+          })
+
+          $('#topicsDrop').each(function(){
+             var value = $(this).attr('data');
+             if(value != ''){
+               $(this).val(value);
+             }
+          })
+
+          $('#subjectsDrop').on('change',async function(){
+             var subjectId = $(this).val();
+             var url = '/dash/api/getSubjectTopics/'+subjectId;
+
+             var responData = await axios.get(url);
+             $('#topicsDrop').empty();
+             $('#topicsDrop').each(function() {
+                for(var i=0; i<responData.data.length; i++){
+                  $('#topicsDrop').append('<option value="' + (responData.data[i].t_id) + '">' + (responData.data[i].topic) + '</option>');
+                }
+             })
+          })
+
+          $('#clearfile').on('click',function(){
+            $('#questions_file').val('');
+            $('.input-group .custom-file-label').html('Choose file');
+          })
+
+          $('#add_question').submit(async function(e){
+            $('#submit').html('please wait...');
+            $('#submit').attr('enabled','false');
+            e.preventDefault();
+            var data = $(this).serialize();
+            var question_pic = $('#q_photo')[0].files;
+            var answer_pic = $('#a_photo')[0].files;
+            
+
+            data = data.split('&');
+            var formData = new FormData();
+            if(question_pic.length > 0){
+              formData.append("q_photo",question_pic[0]);
+            }
+            if(answer_pic.length > 0){
+              formData.append("a_photo",answer_pic[0]);
+            }
+
+            if(location.pathname == '/dash/app/post-question'){
+              var questions = $('#questions_file')[0].files;
+              if(questions.length > 0){
+                formData.append("questions_file",questions[0]);
+              }
+            }
+
+            for(var i=0; i<data.length; i++){
+              var d = data[i].split('=');
+              formData.append(d[0],decodeURIComponent(d[1]));
+            }
+
+            var data = await axios.post('/dash/api/add-question', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            })
+            $('#submit').html('Submit');
+            $('#submit').attr('enabled','true');
+           if(data.status == 201){
+             alert(data.data);
+           }else{
+             alert('Question has been posted');
+             $('#q_photo').val('');
+             $('#a_photo').val('');
+             $('#question').val('');
+             $('#a_text').val('');
+             $('#a_video').val('');
+             $('.custom-file-label').html('Choose file');
+           }
+          })
+      })
+    </script>
+</body>
+</html>

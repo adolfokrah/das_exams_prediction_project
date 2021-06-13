@@ -1,0 +1,128 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Submitted Assignment</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item ">Assignments</li>
+                <li class="breadcrumb-item active">Assignment</li>
+                </ol>
+            </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+          <div class="col-12 col-lg-12 col-xl-6">
+            <!-- general form elements -->
+             {{> alert}}
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Submitted Assignment</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+             
+              <form role="form" action="/dash/api/submit_answer" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+                    <div>
+                       <strong>Submitted By:</strong>
+                       <span>{{data.question.username}}</span>
+                    </div>
+
+                    <div>
+                       <strong>Submitted On:</strong>
+                       <span>{{data.question.date}}</span>
+                    </div>
+                    <div>
+                       <strong>Status:</strong>
+                       {{#ifCond data.question.status '==' 'pending'}}
+                            <span class="badge badge-primary">Pending</span>
+                       {{else}}
+                        <span class="badge badge-success">Answered</span>
+                       {{/ifCond}}
+                    </div>
+                    <br/>
+                    <h5>Question</h5><hr/>
+                    <div>{{data.question.question_text}}</div>
+                    <div>
+                        <a href="https://dasexamprediction.biztrustgh.com/uploads/docs/{{data.question.file}}" target="_blank">{{data.question.file}}</a>
+                    </div>
+                    <div>
+                        <img src="{{data.question.question_pic}}" style="max-width: 100%;"/>
+                    </div>
+
+                    {{#if data.question.a_id}}
+                       <h5>Answer</h5><hr/>
+                       <div style="background-color: #dee2e6; border-radius:4px; padding:5px">{{data.question.a_text}}
+
+                         <div>
+                        <a href="https://dasexamprediction.biztrustgh.com/uploads/docs/{{data.question.qa_file}}" target="_blank">{{data.question.qa_file}}</a>
+                      </div>
+
+                      <br/>
+                       
+                      {{#if data.question.a_photo}}
+                        <div>
+                          <img src="{{data.question.a_photo}}" style="max-width: 100%;"/>
+                      </div>
+                      {{/if}}
+                      <br/>
+                         {{#if data.question.a_video}}
+                          <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{data.question.a_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                         {{/if}}
+                       </div>
+                    {{/if}}
+
+                    <br/><br/>
+                    <h5>Submit Answer</h5><hr/>    
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Text</label>
+                        <textarea id="a_text" name="a_text"  class="form-control" placeholder="Enter Answere Here"></textarea>
+                    </div>
+
+                    <input type="hidden" name="id" value="{{data.question.sq_id}}"/>
+                 <div class="form-group">
+                      <label for="exampleInputEmail1">Pic (png, jpeg)</label>
+                     <div class="custom-file">
+                      <input name="a_photo" type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                 </div>
+
+                 <div class="form-group">
+                      <label for="exampleInputEmail1">File (docx, pdf, excel)</label>
+                     <div class="custom-file">
+                      <input name="file" type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                 </div>
+
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Video</label>
+                        <input name="a_video" class="form-control" type="text" placeholder="eg. https://www.youtube.com/watch?v=cBBHJxRw--g" name="a_video"/>
+                 </div>
+
+                
+                </div>
+                <div class="card-footer">
+                   <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Submit"/>
+                 </div>
+                </div>
+              </form>
+            </div>
+          </div>
+         </div>
+
+      </div>
+    </section>
+  </div>
